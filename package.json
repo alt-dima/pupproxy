@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "puppeteer": "^10.2.0",
+    "puppeteer-extra": "^3.1.18",
+    "puppeteer-extra-plugin-stealth": "^2.7.8"
+  },
+  "name": "pupproxy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "altuhovsu",
+  "license": "ISC",
+  "description": "Simple NodeJS app for demo purposes with Express WEB-server, Puppeteer Chrome headless browser(puppeteer-extra)",
+  "homepage": "https://github.com/altuhovsu/pupproxy"
+}
