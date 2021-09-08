@@ -5,6 +5,21 @@ const scraperObject = {
         let page = await browser.newPage();
 	//await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36')
 
+	//passing cookies to the page
+	if(params.cookies) { 
+	    //console.log(JSON.parse(params.cookies));
+	    cookies = JSON.parse(params.cookies)
+	    for (cooka in cookies) {
+		await page.setCookie({"name": cooka, "value":cookies[cooka], "url":params.url});
+	    }
+	}
+
+	//passing headers to the page
+	//let headers = params.headers;
+	//console.log(params.headers);
+	if(params.headers) { await page.setExtraHTTPHeaders(JSON.parse(params.headers)); }
+
+	
 	//navigate page/tab to specified url
         //console.log(`Navigating to ${params.url}...`);
         await page.goto(params.url, { waitUntil: 'load' });
