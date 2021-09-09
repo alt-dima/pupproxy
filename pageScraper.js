@@ -21,12 +21,12 @@ const scraperObject = {
 
 	
 	//navigate page/tab to specified url
-        //console.log(`Navigating to ${params.url}...`);
-        await page.goto(params.url, { waitUntil: 'load' });
+	let data = {};
+        console.log(`Navigating to ${params.url}...`);
+        data.response = await page.goto(params.url, { waitUntil: 'load' });
 	
 	//get full page html with evaluting JS on it
-	let data;
-	data = await page.evaluate(() => document.querySelector('*').outerHTML);
+	data.body = await page.evaluate(() => document.querySelector('*').outerHTML);
 	
 	//close page/tab on browser
 	await page.close();

@@ -24,8 +24,8 @@ webserv.get('/chrome',  async (req, res) => {
   if (!req.query.url || !(req.query.proxyport in browserInstance)) res.status(400).send('Missing params');
   else {
     // Pass the browser instance to the scraper controller with a params from query
-    bodyht = await pageScraper.scraper(await browserInstance[req.query.proxyport], req.query);
-    res.send(bodyht);
+    data = await pageScraper.scraper(await browserInstance[req.query.proxyport], req.query);
+    res.send(data.body);
   }
 })
 
