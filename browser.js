@@ -9,7 +9,7 @@ async function startBrowser(proxy){
         console.log(`Opening the browser with proxy ${proxy}......`);
         browser = await puppeteer.launch({
             headless: true,
-            args: [`--proxy-server=${proxy}`],
+            args: [`--proxy-server=${proxy}`, '--no-sandbox', '--disable-setuid-sandbox'],
             'ignoreHTTPSErrors': false
         });
     } catch (err) {
