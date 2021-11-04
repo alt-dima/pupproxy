@@ -8,12 +8,13 @@ const pageScraper = require('./pageScraper');
 //define a constants for browser instances
 const proxies = JSON.parse(process.env.PROXIES);
 const browserInstance = {};
-//Start a browser instances with proxies from .env => PROXIES 
+//Start a browser instances with proxies from .env => PROXIES
 for (let proxy in proxies) {
     browserInstance[proxy] = browserObject.startBrowser(proxies[proxy]);
     //console.log(`${proxy} ${proxies[proxy]}`)
 }
 
+browserInstance["noproxy"] = browserObject.startBrowser();
 //Express event handler on GET /chrome with required params:
 //url = URL to fetch in the Browser
 //proxyport = valid proxyport from the .env => PROXIES
@@ -25,6 +26,8 @@ webserv.get('/chrome',  async (req, res) => {
   else {
     // Pass the browser instance to the scraper controller with a params from query
     data = await pageScraper.scraper(await browserInstance[req.query.proxyport], req.query);
+    var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
+    console.log(`Navigated to ${req.query.url} via ${req.query.proxyport} from ${ip} with code ${data.response.status()}`);
     res.send(data.body);
   }
 })
