@@ -1,0 +1,16 @@
+[Unit]
+Description=starts pupeproxy
+Requires=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=simple
+LimitNOFILE=102400
+LimitCORE=1073741824
+WorkingDirectory=/home/pupproxy
+ExecStart=/usr/bin/npm start
+User=user
+Group=user
+
+[Install]
+WantedBy=multi-user.target
